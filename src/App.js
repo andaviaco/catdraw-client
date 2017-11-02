@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import AppBar from 'material-ui/AppBar';
+
 
 import logo from './logo.svg';
 import './App.css';
+import Draw from './components/Draw';
+
+
 
 
 class App extends Component {
@@ -14,9 +19,13 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to CatDraw</h1>
           </header>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
+
+          {/* <AppBar
+            title="CatDraw App"
+            showMenuIconButton={false}
+          /> */}
+
+          <Draw />
         </div>
       </MuiThemeProvider>
     );
