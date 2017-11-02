@@ -10,22 +10,44 @@ const styles = theme => ({
     flexGrow: 1,
     maxWidth: '320px',
   },
-  paper: {
-    height: 80,
-    width: 80,
-  },
 });
 
-const CatGrid = ({ classes, spacing=8 }) => (
+const paperStyle = {
+  height: 80,
+  width: 80,
+}
+
+function RenderCell({ cell, onClick }) {
+  const cellStyles = {
+    ...paperStyle,
+    backgroundColor: cell.color,
+  };
+
+  return (
+    <Grid item>
+      <Paper style={cellStyles} onClick={onClick} />
+    </Grid>
+  );
+}
+
+function RenderRow({ row, spacing, onCellSelect }) {
+  return (
+    <Grid
+      container
+      justify="center"
+      spacing={Number(spacing)}
+    >
+      { row.map((cell, i) => <RenderCell key={i} cell={cell} onClick={onCellSelect.bind(null, i)} />) }
+    </Grid>
+  );
+}
+
+const CatGrid = ({ grid, classes, onCellSelect, spacing=8 }) => (
   <Grid container className={classes.root}>
     <Grid item xs={12}>
-      <Grid container justify="center" spacing={Number(spacing)}>
-        {[0, 1, 2, 4, 5, 6, 7, 8, 9].map(value => (
-          <Grid key={value} item>
-            <Paper className={classes.paper}/>
-          </Grid>
-        ))}
-      </Grid>
+
+      { grid.map((row, i) => <RenderRow key={i} row={row} spacing={spacing} onCellSelect={onCellSelect.bind(null, i)} />) }
+
     </Grid>
   </Grid>
 );
