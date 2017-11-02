@@ -34,13 +34,19 @@ const styles = theme => ({
 });
 
 
-const ToolBar = ({ classes }) => (
+const ToolBar = ({ onColorSelect, classes }) => (
   <Toolbar className={classes.toolbar}>
-    <Button className={`${classes.button} ${classes.buttonGreen}`}>
+    <Button
+      className={`${classes.button} ${classes.buttonGreen}`}
+      onClick={() => onColorSelect(COLOR_HEX.green)}
+    >
       <span></span>
     </Button>
 
-    <Button className={`${classes.button} ${classes.buttonRed}`}>
+    <Button
+      className={`${classes.button} ${classes.buttonRed}`}
+      onClick={() => onColorSelect(COLOR_HEX.red)}
+    >
       <span></span>
     </Button>
   </Toolbar>

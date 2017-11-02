@@ -7,8 +7,6 @@ import './App.css';
 import Draw from './components/Draw';
 
 
-
-
 class App extends Component {
   render() {
     return (
@@ -18,12 +16,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to CatDraw</h1>
         </header>
 
-        {/* <AppBar
-          title="CatDraw App"
-          showMenuIconButton={false}
-        /> */}
-
-        <Draw />
+        <Draw initialColor="green"/>
       </div>
     );
   }
