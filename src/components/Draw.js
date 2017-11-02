@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import ToolBar from './ToolBar';
 import AddButton from './AddButton';
+import CatGrid from './CatGrid';
 
 
 class Draw extends Component{
@@ -9,7 +10,7 @@ class Draw extends Component{
     return (
       <section>
         <ToolBar />
-
+        <CatGrid />
         <AddButton />
       </section>
     );
