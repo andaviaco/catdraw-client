@@ -13,18 +13,44 @@ class Draw extends Component{
 
     this.state = {
       current_color: COLOR_HEX[props.initialColor] || COLOR_HEX.green,
+      grid: [
+        [
+          {color: null},
+          {color: null},
+          {color: null},
+        ],
+        [
+          {color: null},
+          {color: null},
+          {color: null},
+        ],
+        [
+          {color: null},
+          {color: null},
+          {color: null},
+        ],
+      ],
     };
   }
 
-  handleColorChange(newColor) {
+  handleColorSelect(newColor) {
     this.setState({ current_color: newColor });
+  }
+
+  handleCellSelect(row, col) {
+    this.setState((state) => state.grid[row][col].color = state.current_color);
   }
 
   render() {
     return (
       <section>
-        <ToolBar onColorSelect={this.handleColorChange.bind(this)} />
-        <CatGrid />
+        <ToolBar
+          onColorSelect={this.handleColorSelect.bind(this)}
+        />
+        <CatGrid
+          grid={this.state.grid}
+          onCellSelect={this.handleCellSelect.bind(this)}
+        />
         <AddButton />
       </section>
     );
