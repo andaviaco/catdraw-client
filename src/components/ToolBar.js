@@ -1,33 +1,53 @@
 import React from 'react';
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
+import PropTypes from 'prop-types';
+import Toolbar from 'material-ui/Toolbar';
+import Button from 'material-ui/Button';
+import { withStyles } from 'material-ui/styles';
+
+import { COLOR_HEX } from '../const';
 
 
-const style = {
-  margin: 5,
-  height: '36px',
-  width: '36px',
-  minWidth: '36px',
-};
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit,
+    height: '36px',
+    minWidth: '36px',
+    width: '36px',
+  },
+  buttonGreen: {
+    background: COLOR_HEX.green,
 
-const ToolBar = () => (
-  <Toolbar>
-    <ToolbarGroup></ToolbarGroup>
-    <ToolbarGroup>
-      <FlatButton
-        label=""
-        backgroundColor="#a4c639"
-        hoverColor="#8AA62F"
-        style={style}
-      />
-      <FlatButton
-        label=""
-        backgroundColor="#f44336"
-        hoverColor="#b71c1c"
-        style={style}
-      />
-    </ToolbarGroup>
+    '&:hover': {
+      background: COLOR_HEX.greenDark,
+    }
+  },
+  buttonRed: {
+    background: COLOR_HEX.red,
+
+    '&:hover': {
+      background: COLOR_HEX.redDark,
+    }
+  },
+  toolbar: {
+    justifyContent: 'flex-end',
+  }
+});
+
+
+const ToolBar = ({ classes }) => (
+  <Toolbar className={classes.toolbar}>
+    <Button className={`${classes.button} ${classes.buttonGreen}`}>
+      <span></span>
+    </Button>
+
+    <Button className={`${classes.button} ${classes.buttonRed}`}>
+      <span></span>
+    </Button>
   </Toolbar>
 );
 
-export default ToolBar;
+ToolBar.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ToolBar);
