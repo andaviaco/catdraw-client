@@ -55,7 +55,16 @@ class Draw extends Component{
   }
 
   handleCellSelect(row, col) {
-    this.setState((state) => state.grid[row][col].color = state.current_color);
+    this.setState((state) => {
+      const mutState = state;
+
+      if (state.grid[row][col].color === state.current_color) {
+        mutState.grid[row][col].color = null;
+      } else {
+        mutState.grid[row][col].color = mutState.current_color;
+      }
+      return mutState;
+    });
   }
 
   handleSubmit() {
