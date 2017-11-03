@@ -27,7 +27,7 @@ class Draw extends Component{
     super(props);
 
     this.state = {
-      current_color: COLOR_HEX[props.initialColor] || COLOR_HEX.green,
+      current_color: props.initialColor || 'green',
       grid: initialGridState(),
     };
   }
@@ -45,6 +45,9 @@ class Draw extends Component{
   }
 
   handleSubmit() {
+    this.clearGrid();
+  }
+
   render() {
     return (
       <section>

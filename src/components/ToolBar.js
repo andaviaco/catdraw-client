@@ -38,14 +38,14 @@ const ToolBar = ({ onColorSelect, classes }) => (
   <Toolbar className={classes.toolbar}>
     <Button
       className={`${classes.button} ${classes.buttonGreen}`}
-      onClick={() => onColorSelect(COLOR_HEX.green)}
+      onClick={() => onColorSelect('green')}
     >
       <span></span>
     </Button>
 
     <Button
       className={`${classes.button} ${classes.buttonRed}`}
-      onClick={() => onColorSelect(COLOR_HEX.red)}
+      onClick={() => onColorSelect('red')}
     >
       <span></span>
     </Button>

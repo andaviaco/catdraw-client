@@ -4,6 +4,9 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 
+import { COLOR_HEX } from '../const';
+
+
 const styles = theme => ({
   root: {
     display: 'inline-flex',
@@ -20,7 +23,7 @@ const paperStyle = {
 function RenderCell({ cell, onClick }) {
   const cellStyles = {
     ...paperStyle,
-    backgroundColor: cell.color,
+    backgroundColor: COLOR_HEX[cell.color],
   };
 
   return (
