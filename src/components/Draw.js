@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import Divider from 'material-ui/Divider';
 import Card, { CardContent } from 'material-ui/Card';
 
 import ToolBar from './ToolBar';

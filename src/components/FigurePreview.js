@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
-import { withStyles } from 'material-ui/styles';
 
 import { COLOR_HEX } from '../const';
 
@@ -42,5 +41,9 @@ const FigurePreview = ({ figure }) => (
     { figure.map((row, i) => <RenderRow key={i} row={row} />) }
   </div>
 );
+
+FigurePreview.propTypes = {
+  figure: PropTypes.array,
+};
 
 export default FigurePreview;
