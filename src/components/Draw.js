@@ -4,6 +4,8 @@ import ToolBar from './ToolBar';
 import AddButton from './AddButton';
 import CatGrid from './CatGrid';
 
+import { submitFigure } from '../api';
+
 const initialGridState = () => ([
   [
     {color: null},
@@ -45,7 +47,18 @@ class Draw extends Component{
   }
 
   handleSubmit() {
-    this.clearGrid();
+    const positions = this.state.grid
+      .map((row, i) => (
+        row.map((col, j) => [i, j, col.color])
+      ))
+      .reduce((acc, row) => [...acc, ...row], [])
+      .filter(position => position[2]);
+
+    submitFigure(positions)
+      .then((res) => {
+        console.log(res);
+        this.clearGrid();
+      });
   }
 
   render() {
