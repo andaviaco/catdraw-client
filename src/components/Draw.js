@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import Snackbar from 'material-ui/Snackbar';
+import Divider from 'material-ui/Divider';
+import Card, { CardContent } from 'material-ui/Card';
 
 import ToolBar from './ToolBar';
 import AddButton from './AddButton';
 import CatGrid from './CatGrid';
-import Snackbar from 'material-ui/Snackbar';
+import FiguresQueue from './FiguresQueue';
 
 import { submitFigure } from '../api';
 
@@ -74,16 +77,46 @@ class Draw extends Component{
   }
 
   render() {
+    const previews = [
+      [
+        [
+          {color: null},
+          {color: null},
+          {color: null},
+        ],
+        [
+          {color: 'red'},
+          {color: null},
+          {color: null},
+        ],
+        [
+          {color: null},
+          {color: null},
+          {color: null},
+        ],
+      ],
+    ];
+
     return (
       <section>
-        <ToolBar
-          onColorSelect={this.handleColorSelect}
-        />
-        <CatGrid
-          grid={this.state.grid}
-          onCellSelect={this.handleCellSelect}
-        />
-        <AddButton onClick={this.handleSubmit} />
+        <Card>
+          <CardContent>
+            <ToolBar
+              onColorSelect={this.handleColorSelect}
+            />
+            <CatGrid
+              grid={this.state.grid}
+              onCellSelect={this.handleCellSelect}
+            />
+            <AddButton onClick={this.handleSubmit} />
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent>
+              <FiguresQueue figures={previews} />
+          </CardContent>
+        </Card>
 
         <Snackbar
           anchorOrigin={{
