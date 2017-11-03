@@ -8,7 +8,7 @@ import AddButton from './AddButton';
 import CatGrid from './CatGrid';
 import FiguresQueue from './FiguresQueue';
 
-import { submitFigure } from '../api';
+import { submitFigure, subscribeToFigureQueue } from '../api';
 
 const initialGridState = () => ([
   [
@@ -36,7 +36,10 @@ class Draw extends Component{
       current_color: props.initialColor || 'green',
       grid: initialGridState(),
       openNotification: false,
+      queue: [],
     };
+
+    subscribeToFigureQueue((data) => this.setState({queue: data}));
 
     this.handleColorSelect = this.handleColorSelect.bind(this);
     this.handleCellSelect = this.handleCellSelect.bind(this);
@@ -77,26 +80,6 @@ class Draw extends Component{
   }
 
   render() {
-    const previews = [
-      [
-        [
-          {color: null},
-          {color: null},
-          {color: null},
-        ],
-        [
-          {color: 'red'},
-          {color: null},
-          {color: null},
-        ],
-        [
-          {color: null},
-          {color: null},
-          {color: null},
-        ],
-      ],
-    ];
-
     return (
       <section>
         <Card>
@@ -114,7 +97,7 @@ class Draw extends Component{
 
         <Card>
           <CardContent>
-              <FiguresQueue figures={previews} />
+            <FiguresQueue figures={this.state.queue} />
           </CardContent>
         </Card>
 
