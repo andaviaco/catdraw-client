@@ -4,8 +4,23 @@ import ToolBar from './ToolBar';
 import AddButton from './AddButton';
 import CatGrid from './CatGrid';
 
-import { COLOR_HEX } from '../const';
-
+const initialGridState = () => ([
+  [
+    {color: null},
+    {color: null},
+    {color: null},
+  ],
+  [
+    {color: null},
+    {color: null},
+    {color: null},
+  ],
+  [
+    {color: null},
+    {color: null},
+    {color: null},
+  ],
+]);
 
 class Draw extends Component{
   constructor(props) {
@@ -13,24 +28,12 @@ class Draw extends Component{
 
     this.state = {
       current_color: COLOR_HEX[props.initialColor] || COLOR_HEX.green,
-      grid: [
-        [
-          {color: null},
-          {color: null},
-          {color: null},
-        ],
-        [
-          {color: null},
-          {color: null},
-          {color: null},
-        ],
-        [
-          {color: null},
-          {color: null},
-          {color: null},
-        ],
-      ],
+      grid: initialGridState(),
     };
+  }
+
+  clearGrid() {
+    this.setState({ grid: initialGridState() });
   }
 
   handleColorSelect(newColor) {
@@ -41,6 +44,7 @@ class Draw extends Component{
     this.setState((state) => state.grid[row][col].color = state.current_color);
   }
 
+  handleSubmit() {
   render() {
     return (
       <section>
@@ -51,7 +55,7 @@ class Draw extends Component{
           grid={this.state.grid}
           onCellSelect={this.handleCellSelect.bind(this)}
         />
-        <AddButton />
+        <AddButton onClick={this.handleSubmit.bind(this)} />
       </section>
     );
   }

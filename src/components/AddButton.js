@@ -17,12 +17,13 @@ const styles = theme => ({
 });
 
 
-const AddButton = ({ classes }) => (
+const AddButton = ({ classes, onClick }) => (
   <Button
     fab
     color="primary"
     aria-label="add"
     className={classes.button}
+    onClick={onClick}
   >
     <AddIcon />
   </Button>
